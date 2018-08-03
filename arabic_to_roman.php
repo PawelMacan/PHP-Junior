@@ -1,11 +1,12 @@
 <?php 
 
 function arabic_to_roman($number){
-
+    /* Basic protection according guidelines*/
     if ($number < 0 || $number > 4000 || !is_int($number)) {
         return "Out of parameters range";
     }
     
+    /* Associative array with roman numbers*/
     $roman_ones = array(1=> "I", 2=>"II", 3=>"III", 4=>"IV", 5=>"V", 6=>"VI", 7=>"VII", 8=>"VIII",
         9=>"IX"); 
     $roman_tens = array(1=> "X", 2=>"XX", 3=>"XXX", 4=>"XL", 5=>"L", 6=>"LX", 7=>"LXX",
@@ -15,21 +16,27 @@ function arabic_to_roman($number){
     $romans_thousands = array(1=> "M", 2=>"MM", 3=>"MMM", 4=>"MMMM", 5=>"MMMMM", 6=>"MMMMMM",
         7=>"MMMMMMM", 8=>"MMMMMMMM", 9=>"MMMMMMMMM"); 
     
+    /* Generates numbers for each decimal */
     $one = $number % 10;
-    $ten = ($number - $one) % 100;
-    $hundred = ($number - $ten - $one) %1000;
+    $ten = ($number - $one) % 100;   
+    $hundred = ($number - $ten - $one) %1000;  
     $thousand = ($number - $hundred - $ten - $one) % 10000;
     
+    /* Shortening to one number */
     $ten = $ten / 10;
+    echo $ten;
     $hundred = $hundred / 100;
+    echo $hundred;
     $thousand = $thousand / 1000;
+    echo $thousand;
     $result = NULL;
     
+    /* Applending result */
     if ($thousand) { $result .=$romans_thousands[$thousand];}
     if ($hundred){$result .= $romans_hundreds[$hundred];}
     if ($ten) {$result .= $roman_tens[$ten]; }
     if ($one) {$result .= $roman_ones[$one]; }
-    
+    echo "<br>";
     return $result;
     
 }

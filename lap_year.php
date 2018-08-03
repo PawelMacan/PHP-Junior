@@ -8,7 +8,8 @@ function lap_year($param) {
     
     if (!is_int($param) ){
         return "Year should be a number";
-    } elseif ($param % 4 == 0 && $param % 100 != 0 || $param % 400 == 0) {
+        
+    } elseif ($param % 4 == 0 && $param % 100 != 0 || $param % 400 == 0) {  /* Calculations according guidelines*/
         return "Year $param is lap year";
     } else {
         return "Year $param is not lap year";
